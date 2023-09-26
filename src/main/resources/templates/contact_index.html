@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Htmx Demo</title>
+  <script src="https://unpkg.com/htmx.org@1.9.2"
+          integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+          crossorigin="anonymous"></script>
+</head>
+<body hx-boost="true">
+
+<div id="main">
+  <form>
+    <label for="search">Search Contacts:</label>
+    <input id="search" name="q" type="search" placeholder="Search Contacts">
+    <button
+        hx-post="/contacts"
+        hx-target="#data"
+        hx-include="#search"
+        hx-push-url="true"
+        hx-vals='{"other":"hello"}'>
+      Search The Contacts
+    </button>
+  </form>
+  <div id="data"></div>
+  <a href="/contacts/new">Add Contact</a>
+</div>
+
+<div th:insert="~{footer :: copy}"></div>
+</body>
+</html>

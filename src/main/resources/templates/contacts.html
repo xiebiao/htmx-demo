@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#iterable-values -->
+
+<ul th:each="contact,contactStat : ${contacts}">
+  <li><a th:href="'mailto:' + ${contact.email}" th:text="${contact.name}">Joe</a>
+    <button th:attr="hx-delete='/contacts/'+${contact.id}"
+            hx-push-url="true"
+            hx-target="#data">
+      Delete Contact
+    </button>
+  </li>
+</ul>
+</html>
